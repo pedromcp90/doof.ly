@@ -5,7 +5,7 @@ config :doofly, Doofly.Repo,
   username: "postgres",
   password: "example",
   hostname: "db",
-  port: 5433,
+  port: 5434,
   database: "postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
