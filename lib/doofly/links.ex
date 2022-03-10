@@ -39,6 +39,10 @@ defmodule Doofly.Links do
     end
   end
 
+  def get_full_link(hash) do
+    DooflyWeb.Endpoint.url <> "/" <> hash
+  end
+
   def update_link(%Link{} = link, attrs) do
     link
     |> Link.changeset(attrs)

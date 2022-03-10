@@ -7,7 +7,7 @@ defmodule DooflyWeb.ApiController do
     %{"url" => url} = params
 
     case Links.create(url) do
-      {:ok, link} -> json(conn, %{status: "success", link: link})
+      {:ok, link} -> json(conn, %{status: "success", link: Links.get_full_link(link)})
       {:error, error} -> json(conn, %{status: "error", message: error})
     end
   end

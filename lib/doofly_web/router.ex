@@ -18,6 +18,7 @@ defmodule DooflyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get ":hash_url", LinkController, :get_url
   end
 
   scope "/api", DooflyWeb do
