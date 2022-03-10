@@ -55,6 +55,11 @@ defmodule Doofly.Links do
     |> Repo.insert()
   end
 
+  defp random_string(string_length) do
+    :crypto.strong_rand_bytes(string_length)
+    |> Base.url_encode64()
+    |> binary_part(0, string_length)
+  end
   @doc """
   Updates a link.
 
