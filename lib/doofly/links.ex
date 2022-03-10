@@ -37,14 +37,14 @@ defmodule Doofly.Links do
     end
   end
 
-  def get_url_from_hash(hash) do
-    case get_by_hash(hash) do
-      nil ->
-        {:error, :url_not_found}
+  def update_link(%Link{} = link, attrs) do
+    link
+    |> Link.changeset(attrs)
+    |> Repo.update()
+  end
 
-      link ->
-        {:ok, link.url}
-    end
+  def update_visits_for_link(link) do
+    update_link(link, %{visits: link.visits + 1})
   end
 
   @doc """

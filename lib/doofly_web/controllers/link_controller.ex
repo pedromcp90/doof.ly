@@ -60,12 +60,13 @@ defmodule DooflyWeb.LinkController do
     |> redirect(to: Routes.link_path(conn, :index))
   end
 
-  #def get_url(_conn, %{"hash_url" => hash_url}) do
-    #case Links.get_url_from_id(hash_url) do
-      #{:ok, url} ->
-        #Links.set_analytics_data(url)
-      #{:error, error} ->
-
-    #end
-  #end
+  def get_url(conn, %{"hash_url" => hash_url}) do
+    case Links.get_by_hash(hash_url) do
+      nil ->
+        send_resp(conn, 401, "error")
+      link ->
+        Links.update_visits_for_link(link)
+        redirect(conn, external: link.url)
+    end
+  end
 end
