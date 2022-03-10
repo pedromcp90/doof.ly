@@ -8,8 +8,8 @@ defmodule Doofly.Links do
 
   alias Doofly.Links.Link
 
-  def get_by_id(id) do
-    Repo.get_by(Link, id: id)
+  def get_by_hash(hash) do
+    Repo.get_by(Link, hash: hash)
   end
 
   def create(url) do
@@ -23,12 +23,12 @@ defmodule Doofly.Links do
   end
 
   def create(url, hash) do
-    case get_by_id(hash) do
+    case get_by_hash(hash) do
       %Link{} ->
         {:error, :already_exists}
 
       nil ->
-        attrs = %{id: hash, url: url}
+        attrs = %{hash: hash, url: url}
 
         case create_link(attrs) do
           {:ok, link} -> {:ok, link}
@@ -37,8 +37,8 @@ defmodule Doofly.Links do
     end
   end
 
-  def get_url_from_id(id) do
-    case get_by_id(id) do
+  def get_url_from_hash(hash) do
+    case get_by_hash(hash) do
       nil ->
         {:error, :url_not_found}
 
