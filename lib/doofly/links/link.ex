@@ -2,6 +2,8 @@ defmodule Doofly.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Domainatrex
+
   @hash_id_regex ~r/^[A-z0-9_-]{8,45}$/
 
   @primary_key {:id, :integer, []}
@@ -24,12 +26,12 @@ defmodule Doofly.Links.Link do
 
   def validate_url(changeset, field, options \\ %{}) do
     validate_change(changeset, field, fn :url, url ->
-      uri = URI.parse(url)
-
-      if uri.scheme == nil do
-        [{field, options[:message] || "Please enter valid url!"}]
-      else
+      with uri <- URI.parse(url),
+           false <- is_nil(uri.scheme),
+           {:ok, _domain} <- Domainatrex.parse(url) do
         []
+      else
+        _ -> [{field, options[:message] || "Please enter valid url!"}]
       end
     end)
   end
