@@ -2,7 +2,7 @@ defmodule Doofly.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_key {:id, :string, []}
+  @primary_key {:id, :integer, []}
   schema "links" do
     field :url, :string
     field :hash, :string
