@@ -8,34 +8,34 @@ defmodule Doofly.Links do
 
   alias Doofly.Links.Link
 
-  @doc """
-  Returns the list of links.
-
-  ## Examples
-
-      iex> list_links()
-      [%Link{}, ...]
-
-  """
-  def list_links do
-    Repo.all(Link)
+  def get_by_id(id) do
+    Repo.get_by(Link, id: id)
   end
 
-  @doc """
-  Gets a single link.
+  def create(url) do
+    hash = random_string(8)
 
-  Raises `Ecto.NoResultsError` if the Link does not exist.
+    case create(url, hash) do
+      {:ok, link} -> {:ok, link}
+      {:error, :already_exists} -> create(url)
+      {:error, %Ecto.Changeset{} = error} -> {:error, error}
+    end
+  end
 
-  ## Examples
+  def create(url, hash) do
+    case get_by_id(hash) do
+      %Link{} ->
+        {:error, :already_exists}
 
-      iex> get_link!(123)
-      %Link{}
+      nil ->
+        attrs = %{id: hash, url: url}
 
-      iex> get_link!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_link!(id), do: Repo.get!(Link, id)
+        case create_link(attrs) do
+          {:ok, link} -> {:ok, link}
+          {:error, error} -> {:error, error}
+        end
+    end
+  end
 
   @doc """
   Creates a link.
@@ -55,50 +55,9 @@ defmodule Doofly.Links do
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a link.
-
-  ## Examples
-
-      iex> update_link(link, %{field: new_value})
-      {:ok, %Link{}}
-
-      iex> update_link(link, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_link(%Link{} = link, attrs) do
-    link
-    |> Link.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a link.
-
-  ## Examples
-
-      iex> delete_link(link)
-      {:ok, %Link{}}
-
-      iex> delete_link(link)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_link(%Link{} = link) do
-    Repo.delete(link)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking link changes.
-
-  ## Examples
-
-      iex> change_link(link)
-      %Ecto.Changeset{data: %Link{}}
-
-  """
-  def change_link(%Link{} = link, attrs \\ %{}) do
-    Link.changeset(link, attrs)
+  defp random_string(string_length) do
+    :crypto.strong_rand_bytes(string_length)
+    |> Base.url_encode64()
+    |> binary_part(0, string_length)
   end
 end
