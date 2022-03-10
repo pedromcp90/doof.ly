@@ -1,41 +1,35 @@
+<!--Div for Background-->
+<div class="text-center">
+  <!--Div for Centered Text & Input-->
+  <div class="centered">
+
+      <p class="firstLine"> D &nbsp; O &nbsp; O &nbsp; F &nbsp; . &nbsp; L &nbsp; Y</p>
+      <p class="secondLine">The Simplest Url Shortener Ever</p>
+      <p>
+        <input class="InputStyle" placeholder="Paste here the link you want to shorten" type="text">
+      </p>
+      <p>
+        <div class="input-group mb-3">
+            <div class="shortened-link-wrapper">
+              <%= if @shortened_link do %>
+                <%= @shortened_link %>
+              <% end %>
+            </div>            
+            <!--
+            <input type="text" class="form-control" id="txt" placeholder="Your shortened link" aria-label="Your shortened link" aria-describedby="button-addon2" required="">
+            <button class="btn btn-secondary" type="button" onclick="copyTxt()">Copy Link</button>
+            -->
+        </div>
+      </p>
+  </div>
+</div>
+
+
+
+<!--
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
   <p>Peace of mind from prototype to production</p>
 </section>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.6/CHANGELOG.md">v1.6 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://web.libera.chat/#elixir">#elixir on Libera Chat (IRC)</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-      <li>
-        <a href="https://discord.gg/elixir">Elixir on Discord</a>
-      </li>
-    </ul>
-  </article>
-</section>
+-->
