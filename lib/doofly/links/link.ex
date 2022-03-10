@@ -5,7 +5,7 @@ defmodule Doofly.Links.Link do
   @primary_key {:id, :string, []}
   schema "links" do
     field :url, :string
-    field :visits, :integer
+    field :hash, :string
 
     timestamps()
   end

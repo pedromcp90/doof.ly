@@ -61,11 +61,11 @@ defmodule DooflyWeb.LinkController do
   end
 
   def get_url(_conn, %{"hash_url" => hash_url}) do
-    case Links.get_url_from_id(hash_url) do
-      {:ok, url} ->
+    #case Links.get_url_from_id(hash_url) do
+      #{:ok, url} ->
         #Links.set_analytics_data(url)
-      {:error, error} ->
+      #{:error, error} ->
 
-    end
+    #end
   end
 end
