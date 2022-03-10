@@ -59,4 +59,13 @@ defmodule DooflyWeb.LinkController do
     |> put_flash(:info, "Link deleted successfully.")
     |> redirect(to: Routes.link_path(conn, :index))
   end
+
+  #def get_url(_conn, %{"hash_url" => hash_url}) do
+    #case Links.get_url_from_id(hash_url) do
+      #{:ok, url} ->
+        #Links.set_analytics_data(url)
+      #{:error, error} ->
+
+    #end
+  #end
 end

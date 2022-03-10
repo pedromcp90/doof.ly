@@ -2,9 +2,10 @@ defmodule Doofly.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_key {:id, :string, []}
+  @primary_key {:id, :integer, []}
   schema "links" do
     field :url, :string
+    field :hash, :string
     field :visits, :integer
 
     timestamps()
@@ -13,8 +14,8 @@ defmodule Doofly.Links.Link do
   @doc false
   def changeset(link, attrs) do
     link
-    |> cast(attrs, [:id, :url, :visits])
-    |> validate_required([:id, :url])
+    |> cast(attrs, [:url, :hash, :visits])
+    |> validate_required([:url, :hash])
     |> validate_url(:url)
   end
 
