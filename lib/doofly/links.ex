@@ -37,6 +37,16 @@ defmodule Doofly.Links do
     end
   end
 
+  def get_url_from_id(id) do
+    case get_by_id(id) do
+      nil ->
+        {:error, :url_not_found}
+
+      link ->
+        {:ok, link.url}
+    end
+  end
+
   @doc """
   Creates a link.
 
