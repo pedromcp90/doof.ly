@@ -23,6 +23,8 @@ defmodule Doofly.Links do
   end
 
   def create(url, hash) do
+    url = check_url_protocol(url)
+    
     case get_by_hash(hash) do
       %Link{} ->
         {:error, :already_exists}
@@ -31,7 +33,7 @@ defmodule Doofly.Links do
         attrs = %{hash: hash, url: url}
 
         case create_link(attrs) do
-          {:ok, link} -> {:ok, link}
+          {:ok, link} -> {:ok, link.hash}
           {:error, error} -> {:error, error}
         end
     end
@@ -69,5 +71,14 @@ defmodule Doofly.Links do
     :crypto.strong_rand_bytes(string_length)
     |> Base.url_encode64()
     |> binary_part(0, string_length)
+  end
+
+  def check_url_protocol(url) do
+    regex = ~r/^https?:\/\//
+
+    case Regex.match?(regex, url) do
+      true -> url
+      false -> "http://#{url}"
+    end
   end
 end

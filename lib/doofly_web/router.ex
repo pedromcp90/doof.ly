@@ -18,7 +18,11 @@ defmodule DooflyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get ":hash_url", LinkController, :get_url
+  end
+
+  scope "/api", DooflyWeb do
+    pipe_through :api
+    post("/create", ApiController, :create)
   end
 
   # Other scopes may use custom stacks.

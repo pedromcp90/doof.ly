@@ -2,6 +2,8 @@ defmodule Doofly.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @hash_id_regex ~r/^[A-z0-9_-]{8,45}$/
+
   @primary_key {:id, :integer, []}
   schema "links" do
     field :url, :string
@@ -17,6 +19,7 @@ defmodule Doofly.Links.Link do
     |> cast(attrs, [:url, :hash, :visits])
     |> validate_required([:url, :hash])
     |> validate_url(:url)
+    |> validate_format(:hash, @hash_id_regex)
   end
 
   def validate_url(changeset, field, options \\ %{}) do
