@@ -81,7 +81,7 @@ input:focus {
   display: block;
 }
 
-.btn-result{
+.btn-result {
   background-color: white;
   border: 3px solid #fff;
   color: black;
@@ -89,7 +89,7 @@ input:focus {
   font-size: 21px;
 }
 
-.btn-result:hover{
+.btn-result:hover {
   background-color: white;
   border: 3px solid #fff031;
 }
@@ -99,4 +99,5 @@ input:focus {
 }*/
 .navbar-dark.bg-dark {
   background-color: #1b1851 !important;
+  border-bottom: 1px solid #ffffff2e;
 }
