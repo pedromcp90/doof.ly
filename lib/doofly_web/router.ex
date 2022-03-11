@@ -20,7 +20,7 @@ defmodule DooflyWeb.Router do
   scope "/", DooflyWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", FormLive
     get ":hash_url", LinkController, :get_url
   end
 
