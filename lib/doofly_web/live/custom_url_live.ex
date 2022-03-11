@@ -9,13 +9,14 @@ defmodule DooflyWeb.CustomUrlLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Custom URL generator</h1>
     <form phx-submit="generate-custom-url">
-      <input class="InputStyle" placeholder="Paste here the link you want to shorten" name="original-url" stype="text">
-      <input class="InputStyle" placeholder="Paste here the custom slug for your url" name="custom-slug" stype="text">
+      <input class="InputStyle" placeholder="Paste here the link you want to shorten" name="original-url" stype="text" autocomplete="off">
+      <input class="InputStyle" placeholder="Paste here the custom slug for your url" name="custom-slug" stype="text" autocomplete="off">
       <input class="btn btn-light btn-submit" type="submit" value="Short URL"/>
     </form>
-    <h1><%= @url %></h1>
+    <%= if @url do %>
+      <div type="" id="text-result" class="btn-result"><%= @url %></div>
+    <% end %>
     <%= if @error do %>
       <div class="alert alert-danger" role="alert">
         <%= @error %>
