@@ -10,8 +10,8 @@ defmodule DooflyWeb.FormLive do
   def render(assigns) do
     ~H"""
     <form phx-submit="generate-url">
-      <input class="InputStyle" placeholder="Paste here the link you want to shorten" phx-value-url="" name="original-url" stype="text">
-      <input type="submit" value="Short URL"/>
+      <input class="InputStyle" placeholder="Paste here the link you want to shorten" phx-value-url="" name="original-url" stype="text" autocomplete="off">
+      <input class="btn btn-light btn-submit" type="submit" value="Short URL"/>
     </form>
     <h1><%= @url %></h1>
     """
