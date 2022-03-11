@@ -13,11 +13,14 @@ defmodule DooflyWeb.FormLive do
       <input class="InputStyle" placeholder="Paste here the link you want to shorten" phx-value-url="" name="original-url" stype="text" autocomplete="off">
       <input class="btn btn-light btn-submit" type="submit" value="Short URL"/>
     </form>
-    <h1><%= @url %></h1>
     <%= if @error do %>
       <div class="alert alert-danger" role="alert">
         <%= @error %>
       </div>
+    <% end %>
+
+    <%= if @url do %>
+      <div type="" id="text-result" class="btn-result"><%= @url %></div>
     <% end %>
     """
   end
