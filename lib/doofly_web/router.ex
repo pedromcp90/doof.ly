@@ -18,10 +18,15 @@ defmodule DooflyWeb.Router do
   end
 
   scope "/", DooflyWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/private", CustomUrlLive
+  end
+
+  scope "/", DooflyWeb do
     pipe_through :browser
 
     live "/", FormLive
-    live "/private", CustomUrlLive
     get ":hash_url", LinkController, :get_url
   end
 

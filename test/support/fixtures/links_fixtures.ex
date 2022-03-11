@@ -10,9 +10,7 @@ defmodule Doofly.LinksFixtures do
   def link_fixture(attrs \\ %{}) do
     {:ok, link} =
       attrs
-      |> Enum.into(%{
-
-      })
+      |> Enum.into(%{})
       |> Doofly.Links.create_link()
 
     link

@@ -24,7 +24,7 @@ defmodule Doofly.Links do
 
   def create(url, hash) do
     url = check_url_protocol(url)
-    
+
     case get_by_hash(hash) do
       %Link{} ->
         {:error, :already_exists}
@@ -40,7 +40,7 @@ defmodule Doofly.Links do
   end
 
   def get_full_link(hash) do
-    DooflyWeb.Endpoint.url <> "/" <> hash
+    DooflyWeb.Endpoint.url() <> "/" <> hash
   end
 
   def update_link(%Link{} = link, attrs) do

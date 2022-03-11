@@ -4,7 +4,7 @@ defmodule DooflyWeb.FormLive do
   alias Doofly.Links
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, url: nil, error: nil )}
+    {:ok, assign(socket, url: nil, error: nil)}
   end
 
   def render(assigns) do
@@ -26,20 +26,22 @@ defmodule DooflyWeb.FormLive do
   end
 
   def handle_event("generate-url", %{"original-url" => original_url}, socket) do
+    link =
+      case Links.create(original_url) do
+        {:ok, short_url} ->
+          %{full_link: Links.get_full_link(short_url), error: false}
 
-    link = case Links.create(original_url) do
-      {:ok,  short_url} ->
-        %{full_link: Links.get_full_link(short_url), error: false}
+        {:error, _} ->
+          %{full_link: nil, error: "The requested url isn't valid"}
+      end
 
-      {:error, _} ->
-        %{full_link: nil, error: "The requested url isn't valid"}
-    end
     {
-    :noreply,
-    assign(
-    socket,
-    url: link.full_link,
-    error: link.error
-    )}
+      :noreply,
+      assign(
+        socket,
+        url: link.full_link,
+        error: link.error
+      )
+    }
   end
 end

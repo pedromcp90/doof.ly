@@ -64,6 +64,7 @@ defmodule DooflyWeb.LinkController do
     case Links.get_by_hash(hash_url) do
       nil ->
         send_resp(conn, 401, "error")
+
       link ->
         Links.update_visits_for_link(link)
         redirect(conn, external: link.url)
