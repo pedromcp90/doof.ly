@@ -25,6 +25,7 @@ body {
   background: transparent;
   width: 500px;
   padding: 10px 20px;
+  margin: 5px;
 }
 
 input,
@@ -75,6 +76,21 @@ input:focus {
 .btn-submit {
   background-color: #fff031;
   border-color: #fff031;
+  margin: 10px auto;
+  display: block;
+}
+
+.btn-result{
+  background-color: white;
+  border: 3px solid #fff;
+  color: black;
+  padding: 10px 60px;
+  font-size: 21px;
+}
+
+.btn-result:hover{
+  background-color: white;
+  border: 3px solid #fff031;
 }
 /*
 .navbar{

@@ -21,12 +21,14 @@ defmodule DooflyWeb.Router do
     pipe_through :browser
 
     live "/", FormLive
+    live "/private", CustomUrlLive
     get ":hash_url", LinkController, :get_url
   end
 
   scope "/api", DooflyWeb do
     pipe_through :api
     post("/create", ApiController, :create)
+    post("/bulk-create", ApiController, :bulk_create)
   end
 
   # Other scopes may use custom stacks.

@@ -50,7 +50,8 @@ defmodule Doofly.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:domainatrex, "~> 2.2.0"}
+      {:domainatrex, "~> 2.2.0"},
+      {:slugify, "~> 1.3"}
     ]
   end
 
