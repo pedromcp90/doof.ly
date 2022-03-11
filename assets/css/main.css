@@ -20,7 +20,7 @@ body {
 }
 
 .InputStyle {
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: solid 1px white;
   background: transparent;
   width: 500px;
@@ -74,8 +74,7 @@ input:focus {
   }
 }
 
-
-.btn-submit{
+.btn-submit {
   background-color: #fff031;
   border-color: #fff031;
   margin: 10px auto;
@@ -94,7 +93,10 @@ input:focus {
   background-color: white;
   border: 3px solid #fff031;
 }
-
+/*
 .navbar{
   display: none;
+}*/
+.navbar-dark.bg-dark {
+  background-color: #1b1851 !important;
 }
