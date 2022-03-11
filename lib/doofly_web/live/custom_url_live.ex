@@ -1,4 +1,4 @@
-defmodule DooflyWeb.FormLive do
+defmodule DooflyWeb.CustomUrlLive do
   use Phoenix.LiveView, layout: {DooflyWeb.LayoutView, "links.html"}
 
   alias Doofly.Links
@@ -9,8 +9,10 @@ defmodule DooflyWeb.FormLive do
 
   def render(assigns) do
     ~H"""
-    <form phx-submit="generate-url">
-      <input class="InputStyle" placeholder="Paste here the link you want to shorten" phx-value-url="" name="original-url" stype="text" autocomplete="off">
+    <h1>Custom URL generator</h1>
+    <form phx-submit="generate-custom-url">
+      <input class="InputStyle" placeholder="Paste here the link you want to shorten" name="original-url" stype="text">
+      <input class="InputStyle" placeholder="Paste here the custom slug for your url" name="custom-slug" stype="text">
       <input class="btn btn-light btn-submit" type="submit" value="Short URL"/>
     </form>
     <h1><%= @url %></h1>
@@ -22,9 +24,9 @@ defmodule DooflyWeb.FormLive do
     """
   end
 
-  def handle_event("generate-url", %{"original-url" => original_url}, socket) do
+  def handle_event("generate-custom-url", %{"original-url" => original_url, "custom-slug" => custom_slug}, socket) do
 
-    link = case Links.create(original_url) do
+    link = case Links.create(original_url, Slug.slugify(custom_slug)) do
       {:ok,  short_url} ->
         %{full_link: Links.get_full_link(short_url), error: false}
 

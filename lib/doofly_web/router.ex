@@ -21,6 +21,7 @@ defmodule DooflyWeb.Router do
     pipe_through :browser
 
     live "/", FormLive
+    live "/private", CustomUrlLive
     get ":hash_url", LinkController, :get_url
   end
 
