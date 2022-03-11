@@ -28,6 +28,7 @@ defmodule DooflyWeb.Router do
   scope "/api", DooflyWeb do
     pipe_through :api
     post("/create", ApiController, :create)
+    post("/bulk-create", ApiController, :bulk_create)
   end
 
   # Other scopes may use custom stacks.
