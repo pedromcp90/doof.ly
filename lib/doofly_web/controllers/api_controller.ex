@@ -14,15 +14,13 @@ defmodule DooflyWeb.ApiController do
 
   def bulk_create(conn, %{"urls" => urls}) do
     urls = Jason.decode!(urls)
+    output = Enum.map(urls, fn url ->
+      case Links.create(url) do
+        {:ok, link} ->
+          %{status: "success", link: Links.get_full_link(link), original_url: url}
 
-    output =
-      Enum.map(urls, fn url ->
-        case Links.create(url) do
-          {:ok, link} ->
-            %{status: "success", link: Links.get_full_link(link)}
-
-          {:error, error} ->
-            %{status: "error", message: error}
+        {:error, error} ->
+          %{status: "error", message: error}
         end
       end)
 
